@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --rowNum: 16;
+    --colNum: 16;
+    --gridSize: 750px;
+  }
+
+
+/* THE SCREEN */
+
+#screen {
+    display: grid;
+    grid-template-rows: repeat(var(--rowNum), 1fr);
+    grid-template-columns: repeat(var(--colNum), 1fr); 
+    width: 750px;
+    height: 750px;
+}
+
+.pixel {
+    border: 1px solid black;
+    width: auto;
+    height: auto;  
+    opacity: 1;
+} 
+
+
