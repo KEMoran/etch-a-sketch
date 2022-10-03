@@ -5,24 +5,47 @@
         <title>Etch-A-Sketch</title>
         <link rel="stylesheet" href="styles.css"> 
         <script src="script.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="screen"></div>
-        <div class="slider-div">
-            <h3>Grid size: <span id="gridSize">32</span></h3>
-            <div class="slide-container">
-                <input type="range" min="1" max="100" value="50" class="slider" id="gridSlider">
+        <div class="etch-a-sketch">
+            <div>
+                <h1>Etch A Sketch</h1>
             </div>
-        </div>
-        <div>
-            <input type="color" id="colourPicker"> 
-            <!-- add label -->
-        </div>
-        <div>
-            <button type="button" id="penButton">Pen</button>
-            <button type="button" id="rainbowButton">Rainbow Pen</button>
-            <button type="button" id="greyscaleButton">Greyscale Pen</button>
-            <button type="button" id="eraserButton">Eraser</button>
+            <div class="screen-and-controls">
+                <div class="control-panel">
+                    <div>
+                        <input type="color" id="colourPicker">
+                    </div>
+                    <div class="pen-buttons">
+                        <button type="button" id="penButton">Pen</button>
+                        <button type="button" id="rainbowButton">Rainbow Pen</button>
+                        <button type="button" id="greyscaleButton">Greyscale Pen</button>
+                        <button type="button" id="eraserButton">Eraser</button>
+                    </div>
+                    <div>
+                        <button type="button" id="clearButton">Clear screen</button>
+                    </div>
+                    <div class="grid-settings">
+                        <div class="slider-div">
+                            <h3>Grid size: <span id="gridSize">32</span></h3>
+                            <div class="slide-container">
+                                <input type="range" min="1" max="100" value="16" class="slider" id="gridSlider">
+                            </div>
+                        </div>
+                        <div class="grid-checkbox">
+                            <input type="checkbox" id="toggleGrid" name="toggleGrid" checked="false">
+                            <label for="toggleGrid">Display grid</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="screen"></div>
+            </div>
         </div>
     </body>
 </html>

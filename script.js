@@ -22,17 +22,45 @@ function createGrid(dimensions)
 //Update grid slider label
 let slider = document.getElementById("gridSlider");
 let sliderLabel = document.getElementById("gridSize");
-sliderLabel.innerHTML = slider.value;
+sliderLabel.innerHTML = slider.value + " x " + slider.value;
 
 slider.oninput = function() {
     sliderLabel.innerHTML = this.value;
+    dimensions = this.value;
     //remove the current grid, then build a fresh one with this new value
     //remove all with class of pixel?
     screen.innerHTML = ''; //clears the screen div
     createGrid(this.value);
+    pixelList = document.querySelectorAll(".pixel"); //creates new node list with new pixels
+    sliderLabel.innerHTML = slider.value + " x " + slider.value;
     changePenColour();
+    }
+
+
+//CLEAR SCREEN BUTTON
+
+function clearScreen()
+{
+    screen.innerHTML = '';
+    createGrid(dimensions);
+    pixelList = document.querySelectorAll(".pixel");
+
+    if (hideGrid.checked){
+        pixelList.forEach((pixel) => {
+            pixel.style.border = "1px solid black";
+            console.log("on");
+        });
+    }
+    else {
+        pixelList.forEach((pixel) => {
+            pixel.style.border = "none";
+            console.log("off");
+        }); 
+    }
 }
 
+
+//changed function to cleanScreen
 
 //CHANGING THE PEN COLOUR AND ERASING
 
@@ -41,12 +69,6 @@ function colourPixel()
 {
     if (rainbowPen == true)
     {
-        // const randomColour = Math.floor(Math.random()*16777215).toString(16);
-
-        // console.log("#" + randomColour);
-
-        // this.style.backgroundColor = "#" + randomColour;
-
         this.style.backgroundColor = rainbowGen();
     }
     else if (greyScale == true)
@@ -84,8 +106,6 @@ function greyscaleGen()
     let randomNumber = Math.floor(Math.random() * 256);
     return `rgb(${randomNumber},${randomNumber},${randomNumber})`;   
 }
-
-
 
 // TOGGLES DIFFERENT PENS
 
@@ -133,11 +153,30 @@ let penColour = document.getElementById("colourPicker").value;
 let rainbowPen = false;
 let greyScale = false;
 
+let pixelList = document.querySelectorAll(".pixel"); //all the grid pixels
+
+//buttons
 document.getElementById("colourPicker").addEventListener("input", changePenColour);
 document.getElementById("penButton").addEventListener("click", changePenColour);
 document.getElementById("rainbowButton").addEventListener("click", toggleRainbow);
 document.getElementById("greyscaleButton").addEventListener("click", toggleGreyScale);
 document.getElementById("eraserButton").addEventListener("click", toggleEraser);
+document.getElementById("clearButton").addEventListener("click", clearScreen);
 
-
-
+//toggles grid on and off with a checkbox
+const hideGrid = document.getElementById("toggleGrid");
+hideGrid.addEventListener('change', function(e) {
+    pixelList = document.querySelectorAll(".pixel");
+    if (hideGrid.checked){
+        pixelList.forEach((pixel) => {
+            pixel.style.border = "1px solid black";
+            console.log("on");
+        });
+    }
+    else {
+        pixelList.forEach((pixel) => {
+            pixel.style.border = "none";
+            console.log("off");
+        }); 
+    }
+});
